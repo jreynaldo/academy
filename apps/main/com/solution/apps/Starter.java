@@ -1,6 +1,6 @@
 package com.solution.apps;
 
-import com.solution.apps.ventas.backend.VentasBackendApplication;
+import com.solution.apps.sales.backend.SalesBackendApplication;
 import com.solution.shared.infrastructure.cli.ConsoleCommand;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.WebApplicationType;
@@ -66,7 +66,7 @@ public class Starter {
     private static HashMap<String, Class<?>> applications() {
         HashMap<String, Class<?>> applications = new HashMap<>();
 
-        applications.put("ventas_backend", VentasBackendApplication.class);
+        applications.put("sales_backend", SalesBackendApplication.class);
 
 
         return applications;
@@ -75,7 +75,7 @@ public class Starter {
     private static HashMap<String, HashMap<String, Class<?>>> commands() {
         HashMap<String, HashMap<String, Class<?>>> commands = new HashMap<>();
 
-        commands.put("ventas_backend", VentasBackendApplication.commands());
+        commands.put("ventas_backend", SalesBackendApplication.commands());
 
         return commands;
     }
