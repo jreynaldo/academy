@@ -1,0 +1,6 @@
+rootProject.name = 'sgv'
+include ':com.solution.ventas'
+project(':com.solution.ventas').projectDir = new File('src/com.solution.ventas')
+
+include ':shared'
+project(':shared').projectDir = new File('src/shared')
