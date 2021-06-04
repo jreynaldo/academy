@@ -1,5 +1,7 @@
 package com.solution.shared.infrastructure.spring;
 
+import com.solution.shared.domain.Service;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
@@ -17,7 +19,8 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Objects;
 
-public final class ApiExceptionMiddleware implements Filter {
+@Configuration
+public  class ApiExceptionMiddleware implements Filter {
     private RequestMappingHandlerMapping mapping;
 
     public ApiExceptionMiddleware(RequestMappingHandlerMapping mapping) {

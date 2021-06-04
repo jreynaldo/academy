@@ -1,13 +1,14 @@
 package com.solution.apps.sales.backend.controllers.category;
 
 
+import com.solution.sales.categories.domain.CategoryExist;
 import com.solution.shared.domain.DomainError;
 import com.solution.shared.domain.bus.command.CommandBus;
 import com.solution.shared.domain.bus.query.QueryBus;
 
 import com.solution.shared.infrastructure.spring.ApiController;
 
-import com.solution.sales.categoria.application.create.CreateCategoryCommand;
+import com.solution.sales.categories.application.create.CreateCategoryCommand;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,46 +25,50 @@ public final class CreateCategoryPutController extends ApiController {
         super(queryBus, commandBus);
     }
 
-    @PutMapping("/categoria/{id}")
+    @PutMapping("/category/{id}")
     public ResponseEntity<String> index(@PathVariable String id, @RequestBody Request request){
         System.out.println(id);
-        dispatch(new CreateCategoryCommand(id, request.nombre(), request.descripcion()));
+        dispatch(new CreateCategoryCommand(id, request.name(), request.description()));
           return new ResponseEntity<>(HttpStatus.CREATED);
 
     }
     @Override
     public HashMap<Class<? extends DomainError>, HttpStatus> errorMapping() {
-        return null;
+
+        return new HashMap<>(){{
+            put(CategoryExist.class, HttpStatus.ACCEPTED);
+        }};
     }
 
    static final class Request{
 
-        private String nombre;
-        private String descripcion;
+        private String name;
+        private String description;
 
         public Request() {
         }
 
-        public Request(String nombre, String descripcion) {
-            this.nombre = nombre;
-            this.descripcion = descripcion;
+        public Request(String name, String description) {
+            this.name = name;
+            this.description = description;
         }
 
-        public String nombre() {
-            return nombre;
+        public String name() {
+            return name;
         }
 
-        public String descripcion() {
-            return descripcion;
+        public String description() {
+            return description;
         }
 
 
-        public void setNombre(String nombre) {
-            this.nombre = nombre;
-        }
+       public void setName(String name) {
+           this.name = name;
 
-        public void setDescripcion(String descripcion) {
-            this.descripcion = descripcion;
-        }
-    }
+       }
+
+       public void setDescription(String description) {
+           this.description = description;
+       }
+   }
 }

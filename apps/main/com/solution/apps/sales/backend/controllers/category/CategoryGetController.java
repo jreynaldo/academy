@@ -4,8 +4,8 @@ import com.solution.shared.domain.DomainError;
 import com.solution.shared.domain.bus.command.CommandBus;
 import com.solution.shared.domain.bus.query.QueryBus;
 import com.solution.shared.infrastructure.spring.ApiController;
-import com.solution.sales.categoria.application.CategoryResponse;
-import com.solution.sales.categoria.application.find.FindCategoryQuery;
+import com.solution.sales.categories.application.CategoryResponse;
+import com.solution.sales.categories.application.find.FindCategoryQuery;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +19,7 @@ public final class CategoryGetController extends ApiController {
         super(queryBus, commandBus);
     }
 
-    @GetMapping("/categoria/{id}")
+    @GetMapping("/category/{id}")
     public HashMap<String, String> index(@PathVariable String id) {
         System.out.println(id);
         CategoryResponse response = ask(new FindCategoryQuery(id));

@@ -2,14 +2,16 @@ package com.solution.shared.infrastructure.hibernate;
 
 
 import com.zaxxer.hikari.util.DriverDataSource;
+import jdk.jfr.Category;
 import org.hibernate.cfg.AvailableSettings;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
-import com.solution.shared.domain.Service;
+
 
 import javax.sql.DataSource;
 import java.io.File;
@@ -18,7 +20,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 
-public final class HibernateConfigurationFactory {
+@Configuration
+public  class HibernateConfigurationFactory {
     private final ResourcePatternResolver resourceResolver;
 
     public HibernateConfigurationFactory(ResourcePatternResolver resourceResolver) {
@@ -53,11 +56,11 @@ public final class HibernateConfigurationFactory {
     ) throws IOException {
         DataSource dataSource = new DriverDataSource(
                 String.format(
-                        "jdbc:mysql://%s:%s/%s?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
+                        "jdbc:postgresql://%s:%s/%s",
                         host,
                         port,
                         databaseName),
-                "com.mysql.cj.jdbc.Driver",
+                "org.postgresql.Driver ",
                 hibernateProperties(),
                 username,
                 password
@@ -82,12 +85,12 @@ public final class HibernateConfigurationFactory {
     }
 
     private List<String> subdirectoriesFor(String contextName) {
-        String path = "./src/" + contextName + "/main/tv/codely/" + contextName + "/";
+        String path = "./src/" + contextName + "/main/com/solution/" + contextName + "/";
 
         String[] files = new File(path).list((current, name) -> new File(current, name).isDirectory());
 
         if (null == files) {
-            path  = "./main/tv/codely/" + contextName + "/";
+            path  = "./main/com/solution/" + contextName + "/";
             files = new File(path).list((current, name) -> new File(current, name).isDirectory());
         }
 
@@ -114,7 +117,8 @@ public final class HibernateConfigurationFactory {
         Properties hibernateProperties = new Properties();
         hibernateProperties.put(AvailableSettings.HBM2DDL_AUTO, "none");
         hibernateProperties.put(AvailableSettings.SHOW_SQL, "false");
-        hibernateProperties.put(AvailableSettings.DIALECT, "org.hibernate.dialect.MySQL8Dialect");
+        hibernateProperties.put(AvailableSettings.HBM2DDL_AUTO, "create");
+        hibernateProperties.put(AvailableSettings.DIALECT, "org.hibernate.dialect.PostgreSQLDialect");
 
         return hibernateProperties;
     }
