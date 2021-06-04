@@ -28,7 +28,7 @@ public final class CreateCategoryPutController extends ApiController {
     @PutMapping("/category/{id}")
     public ResponseEntity<String> index(@PathVariable String id, @RequestBody Request request){
         System.out.println(id);
-        dispatch(new CreateCategoryCommand(id, request.name(), request.description()));
+        dispatch(new CreateCategoryCommand(id, request.name, request.description));
           return new ResponseEntity<>(HttpStatus.CREATED);
 
     }
@@ -45,26 +45,10 @@ public final class CreateCategoryPutController extends ApiController {
         private String name;
         private String description;
 
-        public Request() {
-        }
-
-        public Request(String name, String description) {
-            this.name = name;
-            this.description = description;
-        }
-
-        public String name() {
-            return name;
-        }
-
-        public String description() {
-            return description;
-        }
 
 
        public void setName(String name) {
            this.name = name;
-
        }
 
        public void setDescription(String description) {

@@ -1,6 +1,9 @@
 package com.solution.sales.product.application;
 
-public final class ProductResponse {
+import com.solution.sales.product.domain.Product;
+import com.solution.shared.domain.bus.query.Response;
+
+public final class ProductResponse implements Response {
 
     private String id;
     private String codigo;
@@ -10,7 +13,48 @@ public final class ProductResponse {
     private String categoriaId;
     private String presentacionId;
 
+    public String id() {
+        return id;
+    }
 
+    public String codigo() {
+        return codigo;
+    }
+
+    public String nombre() {
+        return nombre;
+    }
+
+    public String descripcion() {
+        return descripcion;
+    }
+
+    public String imagen() {
+        return imagen;
+    }
+
+    public String categoriaId() {
+        return categoriaId;
+    }
+
+    public String presentacionId() {
+        return presentacionId;
+    }
+
+
+    public static  ProductResponse fromAggregate(Product product){
+        return create()
+                .id(product.id().value())
+                .codigo(product.codigo().value())
+                .nombre(product.nombre().value())
+                .descripcion(product.descripcion().value())
+                .imagen(product.imagen().value())
+                .categoriaId(product.categoriaId().value())
+                .presentacionId(product.presentacionId().value())
+                .build();
+
+
+    }
     public static Build create() {
         return new Build();
     }
