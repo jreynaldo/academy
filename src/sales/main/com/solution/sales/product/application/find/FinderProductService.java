@@ -4,8 +4,7 @@ import com.solution.sales.categories.application.CategoryResponse;
 import com.solution.sales.categories.domain.CategoryId;
 import com.solution.sales.categories.domain.ICategoryRepository;
 import com.solution.sales.product.application.ProductResponse;
-import com.solution.sales.product.domain.IProductRepository;
-import com.solution.sales.product.domain.ProductId;
+import com.solution.sales.product.domain.*;
 import com.solution.shared.domain.Service;
 
 @Service
@@ -17,6 +16,7 @@ public final class FinderProductService {
     }
 
     public ProductResponse find(ProductId id){
-        return ProductResponse.fromAggregate(repository.find(id).orElse(null));
+        Product producto = repository.find(id).orElseThrow(() -> new ProductNotExist(id));
+        return ProductResponse.fromAggregate(producto);
     }
 }

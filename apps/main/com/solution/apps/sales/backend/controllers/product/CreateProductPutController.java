@@ -33,6 +33,7 @@ public final class CreateProductPutController extends ApiController {
                         .imagen(request.imagen)
                         .categoriaId(request.categoriaId)
                         .presentacionId(request.presentacionId)
+                        .createdBy("34343")
                 .build()
 
         );

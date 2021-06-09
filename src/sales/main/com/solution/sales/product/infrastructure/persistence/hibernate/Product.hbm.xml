@@ -4,18 +4,31 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="com.solution.sales.categories.domain.Category" table="categories">
-        <composite-id name="id" class="com.solution.sales.categories.domain.CategoryId" access="field">
+    <class name="com.solution.sales.product.domain.Product" table="products">
+        <composite-id name="id" class="com.solution.sales.product.domain.ProductId" access="field">
             <key-property column="id" name="value" length="36" access="field" />
         </composite-id>
 
-        <component name="name" class="com.solution.sales.categories.domain.CategoryName" access="field">
-            <property name="value" column="name" type="string" access="field" />
+        <component name="codigo" class="com.solution.sales.product.domain.ProductCodigo" access="field">
+            <property name="value" column="codigo" type="string" access="field" />
         </component>
 
-        <component name="description" class="com.solution.sales.categories.domain.CategoryDescription" access="field">
-            <property name="value" column="description" type="string" access="field" />
+        <component name="nombre" class="com.solution.sales.product.domain.ProductNombre" access="field">
+            <property name="value" column="nombre" type="string" access="field" />
         </component>
+        <component name="descripcion" class="com.solution.sales.product.domain.ProductDescripcion" access="field">
+            <property name="value" column="descripcion" type="string" access="field" />
+        </component>
+        <component name="imagen" class="com.solution.sales.product.domain.ProductImagen" access="field">
+            <property name="value" column="imagen" type="string" access="field" />
+        </component>
+        <component name="categoriaId" class="com.solution.sales.product.domain.ProductCategoriaId" access="field">
+            <property name="value" column="categoriaId" type="string" access="field" />
+        </component>
+        <component name="presentacionId" class="com.solution.sales.product.domain.ProductPresentacionId" access="field">
+            <property name="value" column="presentacionId" type="string" access="field" />
+        </component>
+
 
         <component name="createdBy" class="com.solution.shared.domain.DomainCreatedBy" access="field">
             <property name="value" column="createdBy" type="java.lang.String" access="field" />
