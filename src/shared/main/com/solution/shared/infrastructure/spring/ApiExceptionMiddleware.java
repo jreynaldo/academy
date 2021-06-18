@@ -19,7 +19,6 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Objects;
 
-@Configuration
 public  class ApiExceptionMiddleware implements Filter {
     private RequestMappingHandlerMapping mapping;
 

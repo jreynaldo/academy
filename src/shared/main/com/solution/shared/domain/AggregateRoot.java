@@ -6,13 +6,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public abstract class AggregateRoot extends Domain{
+public abstract class AggregateRoot{
     public AggregateRoot() {
         super();
-    }
-
-    public AggregateRoot(DomainCreatedBy createdBy) {
-        super(createdBy);
     }
 
     private List<DomainEvent> domainEvents = new ArrayList<>();

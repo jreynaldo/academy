@@ -1,0 +1,34 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.solution.academy.categories.domain.Category" table="categories">
+        <composite-id name="id" class="com.solution.academy.categories.domain.CategoryId" access="field">
+            <key-property column="id" name="value" length="36" access="field" />
+        </composite-id>
+
+        <component name="name" class="com.solution.academy.categories.domain.CategoryName" access="field">
+            <property name="value" column="name" type="string" access="field" />
+        </component>
+
+        <component name="description" class="com.solution.academy.categories.domain.CategoryDescription" access="field">
+            <property name="value" column="description" type="string" access="field" />
+        </component>
+
+        <component name="createdBy" class="com.solution.shared.domain.DomainCreatedBy" access="field">
+            <property name="value" column="createdBy" type="java.lang.String" access="field" />
+        </component>
+        <component name="createdDate" class="com.solution.shared.domain.DomainCreatedDate" access="field">
+            <property name="value" column="createdDate" type="java.time.Instant" access="field" />
+        </component>
+
+        <component name="lastModifiedBy" class="com.solution.shared.domain.DomainLastModifiedBy" access="field">
+            <property name="value" column="lastModifiedBy" type="java.lang.String" access="field" />
+        </component>
+        <component name="lastModifiedDate" class="com.solution.shared.domain.DomainLastModifiedDate" access="field">
+            <property name="value" column="lastModifiedDate" type="java.time.Instant" access="field" />
+        </component>
+    </class>
+</hibernate-mapping>

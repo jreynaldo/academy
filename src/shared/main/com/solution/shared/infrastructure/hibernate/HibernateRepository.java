@@ -1,7 +1,7 @@
 package com.solution.shared.infrastructure.hibernate;
 
 import org.hibernate.SessionFactory;
-import com.solution.shared.domain.Identifier;
+
 import com.solution.shared.domain.criteria.Criteria;
 
 import javax.persistence.criteria.CriteriaQuery;
@@ -25,7 +25,7 @@ public abstract class HibernateRepository<T> {
         sessionFactory.getCurrentSession().clear();
     }
 
-    protected Optional<T> byId(Identifier id) {
+    protected Optional<T> byId(String id) {
         return Optional.ofNullable(sessionFactory.getCurrentSession().byId(aggregateClass).load(id));
     }
 
